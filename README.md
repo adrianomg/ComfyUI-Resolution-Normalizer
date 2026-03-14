@@ -40,6 +40,36 @@ Image**, **Resize Image**, or other resolution-dependent nodes.
 
 ------------------------------------------------------------------------
 
+## Installation
+
+1. Download the `ResolutionNormalizer.json` file.
+
+2. Copy the file into the following directory inside your ComfyUI installation: `ComfyUI/user/default/subgraphs/`
+
+If the `subgraphs` directory does not exist, you can create it manually.
+
+Example directory structure:
+
+ComfyUI
+├─ user
+│  ├─ default
+│  │  ├─ subgraphs
+│  │  │  └─ ResolutionNormalizer.json
+
+3. Restart ComfyUI.
+
+The **Resolution Normalizer** subgraph should now be available in the node menu.
+
+------------------------------------------------------------------------
+## Usage
+
+1. Add the **Resolution Normalizer** node to your workflow.
+2. Connect an **image** input.
+3. Set the **Base resolution** value.
+4. Use the **Width** and **Height** outputs to drive nodes that require resolution inputs (for example, `Empty Latent Image`, `Resize Image`, etc.).
+
+------------------------------------------------------------------------
+
 ## How It Works
 
 The node calculates a scaling factor based on the smallest side of the
