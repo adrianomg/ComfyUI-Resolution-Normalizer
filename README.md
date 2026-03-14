@@ -8,6 +8,8 @@ This is useful when preparing images for Stable Diffusion pipelines that
 expect a consistent base resolution while keeping the original
 proportions.
 
+<img src="https://github.com/adrianomg/ComfyUI-Resolution-Normalizer/blob/main/Normalizer_node.png?raw=true" width=25% height=25%>
+
 ------------------------------------------------------------------------
 
 ## Features
