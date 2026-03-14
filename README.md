@@ -23,19 +23,19 @@ proportions.
 
 ## Inputs
 
-  Input                 Type    Description
-  --------------------- ------- --------------------------------------------------
-  **image**             IMAGE   Image used to read the original width and height
-  **Base resolution**   INT     Desired resolution for the smallest side
+  Input | Type | Description
+  --- | --- | ---
+  **image** | IMAGE | Image used to read the original width and height
+  **Base resolution** | INT | Desired resolution for the smallest side
 
 ------------------------------------------------------------------------
 
 ## Outputs
 
-  Output       Type   Description
-  ------------ ------ -------------------
-  **Width**    INT    Normalized width
-  **Height**   INT    Normalized height
+  Output | Type | Description
+  --- | --- | ---
+  **Width** | INT | Normalized width
+  **Height** | INT | Normalized height
 
 These outputs can be connected directly to nodes such as **Empty Latent
 Image**, **Resize Image**, or other resolution-dependent nodes.
@@ -94,11 +94,11 @@ Original image:
 
 1920 × 1080
 
-Base resolution:
+Selected base resolution:
 
 480
 
-Result:
+Resulting resolution:
 
 853 × 480
 
