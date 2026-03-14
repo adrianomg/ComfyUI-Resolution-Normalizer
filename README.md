@@ -10,6 +10,8 @@ proportions.
 
 <img src="https://github.com/adrianomg/ComfyUI-Resolution-Normalizer/blob/main/Normalizer_node.png?raw=true" width=25% height=25%>
 
+<img src="https://github.com/adrianomg/ComfyUI-Resolution-Normalizer/blob/main/Normalizer_node_expanded.png?raw=true">
+
 ------------------------------------------------------------------------
 
 ## Features
