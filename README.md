@@ -49,13 +49,13 @@ Image**, **Resize Image**, or other resolution-dependent nodes.
 If the `subgraphs` directory does not exist, you can create it manually.
 
 Example directory structure:
-
+```
 ComfyUI
 ├─ user
 │  ├─ default
 │  │  ├─ subgraphs
 │  │  │  └─ ResolutionNormalizer.json
-
+```
 3. Restart ComfyUI.
 
 The **Resolution Normalizer** subgraph should now be available in the node menu.
