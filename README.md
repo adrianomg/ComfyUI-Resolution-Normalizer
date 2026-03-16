@@ -122,11 +122,7 @@ value: 2000
 
 ## Example Workflow
 
-Load Image
-↓
-Resolution Normalizer
-↓
-Empty Latent Image
+Load Image  ➔  Resolution Normalizer  ➔  Empty Latent Image
 
 ---
 
