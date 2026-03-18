@@ -8,6 +8,9 @@ This makes it useful for preparing images for Stable Diffusion pipelines, resizi
 
 <img src="https://github.com/adrianomg/ComfyUI-Resolution-Normalizer/blob/main/images/node.png?raw=true" width=25% height=25%>
 
+## Example Workflow
+<img src="https://github.com/adrianomg/ComfyUI-Resolution-Normalizer/blob/main/images/example_workflow.png?raw=true">
+
 ---
 
 ## Features
@@ -117,12 +120,6 @@ This is useful to keep the computational cost constant.
 
 mode: sum
 value: 2000
-
----
-
-## Example Workflow
-
-Load Image  ➔  Resolution Normalizer  ➔  Empty Latent Image
 
 ---
 
