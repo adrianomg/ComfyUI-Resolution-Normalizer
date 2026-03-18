@@ -1,131 +1,131 @@
-# Resolution Normalizer (ComfyUI Subgraph)
+# Resolution Normalizer (ComfyUI Node)
 
-**Resolution Normalizer** is a small ComfyUI subgraph that rescales an
-image resolution while **preserving the aspect ratio**, ensuring that
-the **smallest side matches a chosen base resolution**.
+**Resolution Normalizer** is a utility node for ComfyUI that rescales image resolutions while preserving the aspect ratio.
 
-This is useful when preparing images for Stable Diffusion pipelines that
-expect a consistent base resolution while keeping the original
-proportions.
+The node supports multiple normalization strategies, allowing you to normalize an image resolution by its **minimum side**, **maximum side**, or **the sum of width and height**.
 
-<img src="https://github.com/adrianomg/ComfyUI-Resolution-Normalizer/blob/main/Normalizer_node.png?raw=true" width=25% height=25%>
+This makes it useful for preparing images for Stable Diffusion pipelines, resizing reference images, or normalizing resolutions across workflows.
 
-<img src="https://github.com/adrianomg/ComfyUI-Resolution-Normalizer/blob/main/Normalizer_node_expanded.png?raw=true">
+<img src="https://github.com/adrianomg/ComfyUI-Resolution-Normalizer/blob/main/images/node.png?raw=true" width=25% height=25%>
 
-------------------------------------------------------------------------
+---
 
 ## Features
 
--   Preserves the original **aspect ratio**
--   Automatically **upscales or downscales**
--   Ensures the **smallest side equals the selected base resolution**
--   Simple drop-in subgraph for ComfyUI workflows
+- Preserve the original **aspect ratio**
+- Normalize resolution using different strategies
+- Automatically **upscale or downscale**
+- Output the calculated **width and height**
+- Display the resulting resolution as a formatted string
 
-------------------------------------------------------------------------
-
-## Inputs
-
-  Input | Type | Description
-  --- | --- | ---
-  **image** | IMAGE | Image used to read the original width and height
-  **Base resolution** | INT | Desired resolution for the smallest side
-
-------------------------------------------------------------------------
-
-## Outputs
-
-  Output | Type | Description
-  --- | --- | ---
-  **Width** | INT | Normalized width
-  **Height** | INT | Normalized height
-
-These outputs can be connected directly to nodes such as **Empty Latent
-Image**, **Resize Image**, or other resolution-dependent nodes.
-
-------------------------------------------------------------------------
+---
 
 ## Installation
 
-1. Download the `ResolutionNormalizer.json` file.
+1. Clone or download this repository.
 
-2. Copy the file into the following directory inside your ComfyUI installation: `ComfyUI/user/default/subgraphs/`
+2. Copy the repository into the ComfyUI `custom_nodes` directory:
 
-If the `subgraphs` directory does not exist, you can create it manually.
-
-Example directory structure:
-```
-ComfyUI
-├─ user
-│  ├─ default
-│  │  ├─ subgraphs
-│  │  │  └─ ResolutionNormalizer.json
-```
 3. Restart ComfyUI.
 
-The **Resolution Normalizer** subgraph should now be available in the node menu.
+The **Resolution Normalizer** node will appear in the node menu.
 
-------------------------------------------------------------------------
-## Usage
+---
 
-1. Add the **Resolution Normalizer** node to your workflow.
-2. Connect an **image** input.
-3. Set the **Base resolution** value.
-4. Use the **Width** and **Height** outputs to drive nodes that require resolution inputs (for example, `Empty Latent Image`, `Resize Image`, etc.).
+## Node Inputs
 
-------------------------------------------------------------------------
+| Input | Type | Description |
+|------|------|-------------|
+| image | IMAGE | Image used to determine the original resolution |
+| value | INT | Target normalization value |
+| mode | ENUM | Normalization mode (`min`, `max`, or `sum`) |
 
-## How It Works
+---
 
-The node calculates a scaling factor based on the smallest side of the
-input image:
+## Node Outputs
 
-scale = base_resolution / min(width, height)
+| Output | Type | Description |
+|------|------|-------------|
+| width | INT | Calculated width |
+| height | INT | Calculated height |
+| resolution | STRING | Formatted resolution string (e.g. `1280 × 720`) |
 
-The new resolution is then computed proportionally:
+---
 
-new_width = width \* scale\
-new_height = height \* scale
+## Normalization Modes
 
-The values are rounded to integers to produce valid image dimensions.
+### Min Mode
 
-------------------------------------------------------------------------
+Ensures the **smallest side** of the image equals the target value.
 
-## Example
+Example:
 
-Original image:
+Input image: 1920 × 1080
+Target value: 480
+Result: 853 × 480
 
-1920 × 1080
+---
 
-Selected base resolution:
+### Max Mode
 
-480
+Ensures the **largest side** of the image equals the target value.
 
-Resulting resolution:
+Example:
 
-853 × 480
+Input image: 1920 × 1080
+Target value: 1024
+Result: 1024 × 576
 
-Aspect ratio is preserved while the smallest dimension becomes the
-selected base resolution.
+---
 
-------------------------------------------------------------------------
+### Sum Mode
 
-## Use Cases
+Ensures the **sum of width and height** equals the target value.
 
--   Preparing images for **Stable Diffusion**
--   Keeping consistent **latent resolution**
--   Normalizing images for **batch workflows**
--   Rescaling reference images while preserving proportions
+Example:
 
-------------------------------------------------------------------------
+Input image: 1920 × 1080
+Target value: 2000
+Result: 1280 × 720
 
-## Notes
+---
 
--   The node may **upscale or downscale** depending on the input size.
--   Aspect ratio is always preserved.
--   The output values are **rounded to integers**.
+## Example Use Cases
 
-------------------------------------------------------------------------
+### Preparing images for Stable Diffusion
+
+Normalize images so the smallest side matches a base resolution:
+
+mode: min
+value: 768
+
+---
+
+### Limiting maximum image size
+
+Prevent images from exceeding a given resolution:
+
+mode: max
+value: 1024
+
+---
+
+### Normalizing images across a dataset
+
+Ensure image resolution scale consistently based on their total dimensions.
+This is useful to keep the computational cost constant.
+
+mode: sum
+value: 2000
+
+---
+
+## Example Workflow
+
+Load Image  ➔  Resolution Normalizer  ➔  Empty Latent Image
+
+---
 
 ## License
 
-Free to use and modify.
+This project is released under the MIT License.
